@@ -1,0 +1,11 @@
+# Virtual environment
+flskenv/
+
+# Flask cache and session files
+instance/
+*.sqlite3
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo

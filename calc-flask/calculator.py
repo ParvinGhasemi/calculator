@@ -25,7 +25,7 @@ class Calculator:
         self.result = num1 / num2
         return self.result
     
-    
+
     def power(self, num1: float, num2: float)-> float:
         self.result = num1 ** num2
         return self.result
