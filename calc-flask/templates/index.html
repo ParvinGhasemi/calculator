@@ -4,35 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Container */
+        .calculator-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            color: #333333;
+        }
+
+        /* Form Styles */
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555555;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+            font-size: 1em;
+            text-align: right;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+            font-size: 1em;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Result Styles */
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            font-size: 1.2em;
+            color: #333333;
+            font-weight: bold;
+        }
+    </style>
+
 </head>
 <body>
-    <h1>Calculator</h1>
-    <form action="/calculate" method="post">
-        <label for="num1">Number 1:</label>
-        <input type="text" id="num1" name="num1" required>
-        <br><br>
-        
-        <label for="num2">Number 2:</label>
-        <input type="text" id="num2" name="num2" required>
-        <br><br>
-        
-        <label for="operation">Operation:</label>
-        <select id="operation" name="operation">
-            <option value="add">Add (+)</option>
-            <option value="subtract">Subtract (-)</option>
-            <option value="multiply">Multiply (*)</option>
-            <option value="divide">Divide (/)</option>
-            <option value="power">Power (^)</option>
-            <option value="sqrt">Square Root (√)</option>
-            <option value="mod">Modulo (%)</option>
-        </select>
-        <br><br>
-        
-        <button type="submit">Calculate</button>
-    </form>
+    <div class="calculator-container">
+        <h1>Calculator</h1>
+        <form action="/calculate" method="post">
+            <label for="num1">Number 1:</label>
+            <input type="text" id="num1" name="num1" required>
+            <br><br>
+            
+            <label for="num2">Number 2:</label>
+            <input type="text" id="num2" name="num2" required>
+            <br><br>
+            
+            <label for="operation">Operation:</label>
+            <select id="operation" name="operation">
+                <option value="add">Add (+)</option>
+                <option value="subtract">Subtract (-)</option>
+                <option value="multiply">Multiply (*)</option>
+                <option value="divide">Divide (/)</option>
+                <option value="power">Power (^)</option>
+                <option value="sqrt">Square Root (√)</option>
+                <option value="modulo">Modulo (%)</option>
+            </select>
+            <br><br>
+            
+            <button type="submit">Calculate</button>
+        </form>
 
-    {% if result is not none %}
-        <h2>Result: {{ result }}</h2>
-    {% endif %}
+        {% if result is not none %}
+            <h2>Result: {{ result }}</h2>
+        {% endif %}
+    </div>
 </body>
 </html>

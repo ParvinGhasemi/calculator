@@ -18,7 +18,7 @@ def calculate():
         operation = request.form.get('operation')
     except ValueError:
         #   return('Invalid input! Please input a valid number: integers or decimals.')
-        abort(400, desciption='Invalid input! Please input a valid number: integers or decimals.')
+        abort(400, description='Invalid input! Please input a valid number: integers or decimals.')
         #   raise ValueError('Invalid input! Please input a valid number: integers or decimals.')
 
 
@@ -38,7 +38,7 @@ def calculate():
         case 'sqrt':
             result = calc.sqrt(num1)
         case _:
-            return 'Invalid Opertation'
+            abort(400, description='Invalid Opertation')
         
     return render_template('index.html', result=result)
 
