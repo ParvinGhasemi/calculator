@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-
     <style>
         /* Global Styles */
         body {
@@ -32,7 +31,7 @@
             color: #333333;
         }
 
-        /* Form Styles */
+        /* Form */
         form {
             margin-top: 20px;
         }
@@ -53,6 +52,13 @@
             text-align: right;
         }
 
+        /* Disabled Input */
+        input[type="text"]:disabled {
+            background-color: #e0e0e0;
+            color: #a0a0a0;
+            cursor: not-allowed;
+        }
+
         select {
             width: 100%;
             padding: 8px;
@@ -62,6 +68,7 @@
             font-size: 1em;
         }
 
+        /* Button */
         button {
             width: 100%;
             padding: 10px;
@@ -79,7 +86,14 @@
             background-color: #45a049;
         }
 
-        /* Result Styles */
+        /* Disabled Button */
+        button:disabled {
+            background-color: #cccccc;
+            color: #666666;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
         .result {
             margin-top: 20px;
             padding: 15px;
@@ -90,7 +104,47 @@
             font-weight: bold;
         }
     </style>
+    <script>
+        // JavaScript to enable/disable the second input based on selected operation
+        function toggleSecondInput() {
+            const operation = document.getElementById("operation").value;
+            const num2Field = document.getElementById("num2");
+            const calculateButton = document.querySelector("button[type='submit']");
+            
+            // Disable second input and calculate button for square root
+            if (operation === "sqrt") {
+                num2Field.disabled = true;
+                num2Field.value = "";
+                calculateButton.disabled = document.getElementById("num1").value === "";
+            } else {
+                num2Field.disabled = false;
+                validateInputs(); // Validate inputs to enable/disable the button based on both fields
+            }
+        }
 
+        // Enable/disable calculate button based on input field values
+        function validateInputs() {
+            const num1 = document.getElementById("num1").value;
+            const num2 = document.getElementById("num2").value;
+            const operation = document.getElementById("operation").value;
+            const calculateButton = document.querySelector("button[type='submit']");
+            
+            // Enable the button only if both fields are filled for two-operand operations
+            if (operation === "sqrt") {
+                calculateButton.disabled = num1 === "";
+            } else {
+                calculateButton.disabled = num1 === "" || num2 === "";
+            }
+        }
+
+        // Attach event listeners on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("operation").addEventListener("change", toggleSecondInput);
+            document.getElementById("num1").addEventListener("input", validateInputs);
+            document.getElementById("num2").addEventListener("input", validateInputs);
+            toggleSecondInput(); // Run once on load to set the initial state
+        });
+    </script>
 </head>
 <body>
     <div class="calculator-container">
